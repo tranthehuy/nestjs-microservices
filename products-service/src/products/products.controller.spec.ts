@@ -8,7 +8,7 @@ describe('ProductsController', () => {
 
   beforeEach(async () => {
     const productMockService = {
-      findAll: jest.fn((query) => Promise.resolve({...query, items: []})),
+      findAll: jest.fn((query) => Promise.resolve([])),
       create: jest.fn((request) => request)
     };
 
@@ -31,11 +31,9 @@ describe('ProductsController', () => {
   });
 
   describe('list products', () => {
-    it('should return { limit: 100, items: [] }', () => {
-      const limit = 100
+    it('should return []', () => {
       const query = new ListAllEntitiesDto();
-      query.limit = limit;
-      expect(productsController.findAll(query)).resolves.toStrictEqual({ limit, items: [] });
+      expect(productsController.findAll(query)).resolves.toStrictEqual([]);
     });
   });
 });

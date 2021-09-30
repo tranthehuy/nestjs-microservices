@@ -48,6 +48,7 @@ export class ProductsController {
           }),
           {},
         );
+      Logger.log('search', search);
     }
 
     return this.productsService.findAll(query, sort, search);

@@ -32,6 +32,14 @@ export class ProductsService {
       queryModel = queryModel.sort(sort);
     }
 
+    if (query.limit) {
+      queryModel = queryModel.limit(query.limit)
+    }
+
+    if (query.skip) {
+      queryModel = queryModel.skip(query.skip)
+    }
+
     return queryModel.exec();
   }
 }
