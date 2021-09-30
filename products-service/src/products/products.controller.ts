@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Post, Query } from '@nestjs/common';
+import { Controller, Get, Body, Post, Query, Logger } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto, ListAllEntitiesDto } from './dto';
 import { Product } from './schemas/product.schema';
@@ -14,6 +14,42 @@ export class ProductsController {
 
   @Get()
   async findAll(@Query() query: ListAllEntitiesDto): Promise<Product[]> {
-    return this.productsService.findAll(query);
+    let sort = {};
+    let search = {};
+
+    // build sort object for mongodb query
+    if (query.sort_by) {
+      sort = query.sort_by
+        .split(',')
+        .map((str) => str.split('='))
+        .filter(
+          (pair) => pair.length === 2 && (pair[1] == '1' || pair[1] == '-1'),
+        )
+        .reduce(
+          (previousValue, currentValue) => ({
+            ...previousValue,
+            [currentValue[0]]: +currentValue[1],
+          }),
+          {},
+        );
+      Logger.log('sort_by', sort);
+    }
+
+    // build search object for mongodb query
+    if (query.q) {
+      search = query.q
+        .split(',')
+        .map((str) => str.split('='))
+        .filter((pair) => pair.length === 2)
+        .reduce(
+          (previousValue, currentValue) => ({
+            ...previousValue,
+            [currentValue[0]]: { $regex: currentValue[1], $options: 'i' },
+          }),
+          {},
+        );
+    }
+
+    return this.productsService.findAll(query, sort, search);
   }
 }
