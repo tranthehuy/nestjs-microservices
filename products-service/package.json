@@ -1,8 +1,8 @@
 {
-  "name": "product-service",
+  "name": "products-service",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "This service to store and retreive products in database",
+  "author": "Johnny Chen",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

@@ -1,9 +1,9 @@
 version: '3.6'
 
 services:
-  products-db-service:
+  shared-mongodb-service:
     image: mongo:4.2.3-bionic
-    container_name: products-db-service
+    container_name: shared-mongodb-service
     ports:
       - 27017:27017
     environment:
