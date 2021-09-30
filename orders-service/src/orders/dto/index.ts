@@ -1,6 +1,6 @@
 // Data Transfer Object schema
 
-export class CreateProductDto {
+export class CreateOrderDto {
   name: string;
   price: number;
   branch: string;

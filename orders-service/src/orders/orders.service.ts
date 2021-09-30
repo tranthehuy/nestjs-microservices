@@ -1,0 +1,19 @@
+import { Model } from 'mongoose';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Order, OrderDocument } from './schemas/order.schema';
+import { CreateOrderDto, ListAllEntitiesDto } from './dto';
+
+@Injectable()
+export class OrdersService {
+  constructor(@InjectModel(Order.name) private productModel: Model<OrderDocument>) {}
+
+  async create(createOrderDto: CreateOrderDto): Promise<Order> {
+    const createdOrder = new this.productModel(createOrderDto);
+    return createdOrder.save();
+  }
+
+  async findAll(query: ListAllEntitiesDto): Promise<Order[]> {
+    return this.productModel.find(query).exec();
+  }
+}

@@ -53,3 +53,9 @@ This api to search products which has
 - sort columns such as name(asc) and price(desc)
 
 It also supports pagination with `limit` and `skip` query.
+
+## Orders Service API
+
+[GET] /token
+To create JWT token to put on the header of requests to product service
+
