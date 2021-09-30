@@ -8,6 +8,8 @@
 
 - Please follow the instructions in each service to install package and start
 
+- These services use the same shared key for JWT token in the header for authentication
+
 ## Build development environment
 
 - In development, the `API_HOST` is different between services so that it can call api together.
@@ -40,7 +42,7 @@ Request Body:
 
 [GET] /products
 
-Example query
+Request query
 ```
 /products?field1=value1&sort_by=name=-1,price=1&q=name=zero,name=zero&limit=5&skip=6
 ```

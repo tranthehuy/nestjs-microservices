@@ -8,8 +8,9 @@ describe('ProductsController', () => {
 
   beforeEach(async () => {
     const productMockService = {
-      findAll: jest.fn((query) => Promise.resolve([])),
-      create: jest.fn((request) => request)
+      findById: jest.fn((id: string) => Promise.resolve({})),
+      findAll: jest.fn((query: string) => Promise.resolve([])),
+      create: jest.fn((request: any) => request),
     };
 
     const app: TestingModule = await Test.createTestingModule({
@@ -27,6 +28,12 @@ describe('ProductsController', () => {
     it('should return {}', () => {
       const result = new CreateProductDto();
       expect(productsController.create(result)).toBe(result);
+    });
+  });
+
+  describe('get product', () => {
+    it('should return {}', () => {
+      expect(productsController.findById('10')).resolves.toStrictEqual({});
     });
   });
 

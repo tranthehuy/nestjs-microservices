@@ -10,12 +10,16 @@ export class ProductsService {
     @InjectModel(Product.name) private productModel: Model<ProductDocument>,
   ) {}
 
-  async create(createProductDto: CreateProductDto): Promise<Product> {
+  create(createProductDto: CreateProductDto): Promise<Product> {
     const createdProduct = new this.productModel(createProductDto);
     return createdProduct.save();
   }
 
-  async findAll(
+  findById(id: string): Promise<Product> {
+    return this.productModel.findById(id).exec();
+  }
+
+  findAll(
     query: ListAllEntitiesDto,
     sort: any,
     search: any,
