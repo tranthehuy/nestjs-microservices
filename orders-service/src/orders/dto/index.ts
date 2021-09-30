@@ -1,18 +1,14 @@
 // Data Transfer Object schema
 
 export class CreateOrderDto {
-  name: string;
-  price: number;
-  branch: string;
-  color: string;
+  customerName: string;
+  customerAddress: string;
+  customerEmail: string;
+  customerPhoneNumber: string;
+  items: string[];
 }
 
 export class ListAllEntitiesDto {
-  name: string;
-  price: number;
-  branch: string;
-  color: string;
-
   q: string; // for searching query
   sort_by: string; // for sort by a column name
   

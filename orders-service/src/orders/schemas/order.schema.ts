@@ -3,17 +3,20 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Order {
-  @Prop()
-  name: string;
+  @Prop({ required: true })
+  customerName: string;
 
-  @Prop()
-  price: number;
+  @Prop({ required: true })
+  customerAddress: string;
 
-  @Prop()
-  branch: string;
+  @Prop({ required: true })
+  customerEmail: string;
 
-  @Prop()
-  color: string;
+  @Prop({ required: true })
+  customerPhoneNumber: string;
+
+  @Prop([String])
+  items: string[];
 }
 
 export type OrderDocument = Order & Document;

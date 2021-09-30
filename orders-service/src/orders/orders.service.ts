@@ -6,14 +6,14 @@ import { CreateOrderDto, ListAllEntitiesDto } from './dto';
 
 @Injectable()
 export class OrdersService {
-  constructor(@InjectModel(Order.name) private productModel: Model<OrderDocument>) {}
+  constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
-    const createdOrder = new this.productModel(createOrderDto);
+    const createdOrder = new this.orderModel(createOrderDto);
     return createdOrder.save();
   }
 
   async findAll(query: ListAllEntitiesDto): Promise<Order[]> {
-    return this.productModel.find(query).exec();
+    return this.orderModel.find(query).exec();
   }
 }
