@@ -1,13 +1,18 @@
-import { Controller, Get, Body, Post, Query, Logger } from '@nestjs/common';
+import { Controller, Get, Body, Post, Query, Logger, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
 import { ProductsService } from './products.service';
 import { CreateProductDto, ListAllEntitiesDto } from './dto';
 import { Product } from './schemas/product.schema';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(
+    private readonly productsService: ProductsService
+  ) {}
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
@@ -50,7 +55,6 @@ export class ProductsController {
         );
       Logger.log('search', search);
     }
-
     return this.productsService.findAll(query, sort, search);
   }
 }

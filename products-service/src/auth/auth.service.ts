@@ -6,7 +6,7 @@ export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
   validateUser(payload) {
-    return { username: 'rosa' };
+    return payload ? { sessionId: +(new Date()) } : false;
   }
 
   createToken(payload: any) {

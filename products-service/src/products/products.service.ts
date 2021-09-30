@@ -1,4 +1,4 @@
-import { AnyArray, Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product, ProductDocument } from './schemas/product.schema';
@@ -28,16 +28,16 @@ export class ProductsService {
       queryModel = this.productModel.find({ $and: [query, search] });
     }
 
-    if (query.sort_by) {
-      queryModel = queryModel.sort(sort);
+    if (query.skip) {
+      queryModel = queryModel.skip(+ query.skip)
     }
 
     if (query.limit) {
-      queryModel = queryModel.limit(query.limit)
+      queryModel = queryModel.limit(+ query.limit)
     }
 
-    if (query.skip) {
-      queryModel = queryModel.skip(query.skip)
+    if (query.sort_by) {
+      queryModel = queryModel.sort(sort);
     }
 
     return queryModel.exec();
