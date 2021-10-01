@@ -99,7 +99,7 @@ Result
 }
 ```
 
-[GET] /products
+### [GET] /products
 
 This api to query products with filter, search and sort features.
 
@@ -151,7 +151,7 @@ This api to search products which has
 
 It also supports pagination with `limit` and `skip` query.
 
-[GET] /products/{product_id}
+### [GET] /products/{product_id}
 
 This api to get product detail of {product_id}
 
@@ -189,7 +189,7 @@ Result
 
 ## Orders Service API
 
-[GET] /token
+### [GET] /token
 
 To create JWT token to put on the header of requests.
 
@@ -206,7 +206,7 @@ Result
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicm9zYSIsImlhdCI6MTYzMzA0NzU1NywiZXhwIjoxNjMzMDUxMTU3fQ.Ycsvg7naoD_IANo14-zItkkVSKvG8kHHVJKJL5_dCKY
 ```
 
-[POST] /orders
+### [POST] /orders
 
 This api is to create order of a customer with list of id of product items.
 This api will check all items which are existing or not in Product service
