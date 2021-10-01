@@ -1,4 +1,5 @@
-import { Controller, Get, Body, Post, Query, HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { Controller, Get, Body, Post, Query, HttpException, HttpStatus, Logger, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto, ListAllEntitiesDto } from './dto';
 import { Order } from './schemas/order.schema';
@@ -13,6 +14,7 @@ export class OrdersController {
   ) {}
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async create(@Body() createOrderDto: CreateOrderDto) {
     const items = createOrderDto.items;
     const token = this.authService.createToken({});
