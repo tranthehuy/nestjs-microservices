@@ -50,6 +50,10 @@ yarn run start:dev
 
 ```
 
+## Sequence diagram for creation order workflow
+
+![Sequence diagram](./images/sequence-diagram.png)
+
 ## Entities diagram
 
 ![Entities diagram](./images/entities-diagram.png)
