@@ -1,5 +1,15 @@
 # Microservices
 
+I am trying to use NestJS framework to build this architecture.
+
+All services will use JWT token to connect together for authentication.
+
+It applies typescript and DTO to validate all requests/input objects to prevent errors.
+
+It also has some unit test with jest - testing framework.
+
+**More details**
+
 - This is an example repo to show how to build a Microservice Architecture with NestJS
 
 - Each service has a seperated README.md to start and run this services
@@ -39,6 +49,10 @@ yarn install
 yarn run start:dev
 
 ```
+
+## Entities diagram
+
+![Entities diagram](./images/entities-diagram.png)
 
 ## Build development environment
 
